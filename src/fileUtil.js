@@ -1,6 +1,8 @@
 const fs = require("fs");
 const vscode = require("vscode");
 
+// TODO: test for existing file. Either fail or use git to version control
+
 const createApexFile = (filePath, fileData = "", openFile = true) => {
   console.debug("Creating file at: ", filePath);
 

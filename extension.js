@@ -47,14 +47,12 @@ function activateExtn() {
     0,
     editor.document.fileName.lastIndexOf(".")
   );
+  const apexClass = editor.document.getText();
+  const fileSepIndex = fileName.lastIndexOf(`\\`) || fileName.lastIndexOf(`/`);
+  const apexClassName = `${fileName.substr(fileSepIndex + 1)}`;
 
-  const testFileName = `${fileName}Test`;
-  const testApexContent = generateTestApex.genTestClass(
-    testFileName,
-    "pass_apex_content"
-  );
-  const testFile = fileUtil.createApexFile(testFileName, testApexContent);
-  console.log("testFile: ", testFile);
+  const testApexClass = generateTestApex.genTestClass(apexClassName, apexClass);
+  fileUtil.createApexFile(`${fileName}Test`, testApexClass);
 
   // all things done!
   vscode.window.showInformationMessage(
